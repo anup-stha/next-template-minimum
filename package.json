@@ -6,20 +6,57 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "yarn prettier && yarn eslint",
+    "lint:fix": "yarn prettier:fix && yarn eslint:fix",
+    "prepare": "husky install",
+    "eslint": "eslint src",
+    "eslint:fix": "eslint --fix src",
+    "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx}\"",
+    "prettier:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
+    "analyze": "cross-env ANALYZE=true pnpm build"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^13.4.12",
+    "cross-env": "^7.0.3",
+    "cva": "npm:class-variance-authority@^0.7.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "lodash": "^4.17.21",
+    "next": "13.4.12",
+    "next-compose-plugins": "^2.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwind-merge": "^1.14.0",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.7",
+    "@commitlint/config-conventional": "^17.6.7",
+    "@total-typescript/ts-reset": "^0.4.2",
     "@types/node": "20.4.5",
     "@types/react": "18.2.17",
     "@types/react-dom": "18.2.7",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.54.1",
     "autoprefixer": "10.4.14",
     "eslint": "8.46.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-config-next": "13.4.12",
-    "next": "13.4.12",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-tailwindcss": "^3.13.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
     "postcss": "8.4.27",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "prettier-plugin-tailwindcss": "^0.4.0",
     "tailwindcss": "3.3.3",
+    "tsc": "^2.0.4",
     "typescript": "5.1.6"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "yarn lint:fix"
+    ]
   }
 }
